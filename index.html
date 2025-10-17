@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Da PLAVE — Presente para Sty</title>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap');
+
+  :root{
+    --bg1:#070717;
+    --bg2:#0f1024;
+    --neon-cyan:#00f0ff;
+    --neon-mag:#c07cff;
+    --muted:#bfc6d1aa;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#fff;
+    overflow-y:auto;
+    position:relative;
+  }
+
+  .star{
+    position: fixed;
+    width:2px; height:2px;
+    background: linear-gradient(45deg, #00f0ff, #c07cff);
+    opacity:0.8;
+    border-radius:50%;
+    pointer-events: none;
+    z-index:1;
+    box-shadow: 0 0 8px #00f0ff, 0 0 16px #c07cff;
+    animation-name: rise;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes rise{
+    0%{transform: translateY(0); opacity:0}
+    10%{opacity:1}
+    100%{transform: translateY(-120vh); opacity:0}
+  }
+
+  nav{
+    position:fixed; left:0; right:0; top:12px; z-index:60;
+    display:flex; align-items:center; justify-content:center;
+    pointer-events:none;
+  }
+  .nav-inner{
+    width:min(1100px,94%); display:flex; align-items:center; justify-content:space-between;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+    padding:8px 14px; border-radius:14px; backdrop-filter: blur(6px); pointer-events:auto;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  }
+  .brand{display:flex; gap:12px; align-items:center}
+  .logo{
+    width:46px; height:46px; border-radius:10px; display:inline-grid; place-items:center;
+    background:linear-gradient(135deg,var(--neon-cyan), var(--neon-mag));
+    box-shadow:0 6px 22px rgba(192,124,255,0.12), inset 0 -6px 18px rgba(0,0,0,0.2);
+    transform-origin:center;
+    animation: logoFloat 6s ease-in-out infinite;
+  }
+  @keyframes logoFloat{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-6px) rotate(4deg)}100%{transform:translateY(0) rotate(0deg)}}
+  .brand h1{font-size:1rem; margin:0; letter-spacing:0.6px}
+  .brand h1 span{display:block; font-weight:900; font-size:0.95rem}
+
+  .nav-links{display:flex; gap:12px; align-items:center}
+  .nav-links a{
+    color:var(--muted); text-decoration:none; font-weight:500; padding:8px 12px; border-radius:8px;
+  }
+  .nav-links a:hover{color:#fff; background:linear-gradient(90deg, rgba(0,240,255,0.06), rgba(192,124,255,0.04));}
+
+  .hero{
+    padding:120px 20px 40px;
+    width:min(1200px,95%); margin:0 auto; text-align:center; position:relative; z-index:2;
+  }
+  .hero .hero-row{display:flex; gap:30px; align-items:center; justify-content:center; flex-wrap:wrap}
+  .hero-left{max-width:640px}
+  .badge{
+    display:inline-block; padding:8px 12px; border-radius:999px; font-size:0.85rem;
+    background: linear-gradient(90deg, rgba(0,240,255,0.08), rgba(192,124,255,0.06));
+    color:var(--neon-cyan); border:1px solid rgba(0,240,255,0.08); margin-bottom:18px;
+  }
+  h2{font-size:2.4rem; margin:0 0 12px; line-height:1.02; background:linear-gradient(90deg,var(--neon-cyan),var(--neon-mag)); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+  .lead{color:var(--muted); margin-bottom:22px}
+
+  .cta-row{display:flex; gap:12px; justify-content:center; margin-top:8px; flex-wrap:wrap}
+  .btn{
+    padding:12px 20px; border-radius:12px; border:0; cursor:pointer; font-weight:700; letter-spacing:0.3px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.45);
+  }
+  .btn-primary{
+    background:linear-gradient(90deg,var(--neon-cyan), #66b0ff);
+    color:#03121b; transform:translateZ(0)
+  }
+  .btn-ghost{
+    background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.06);
+  }
+
+  .hero-card{
+    width:320px; min-height:220px; border-radius:16px; padding:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03); backdrop-filter: blur(8px);
+    box-shadow:0 12px 40px rgba(12,10,25,0.6);
+    display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center;
+  }
+  .next-show{font-weight:700; color:var(--neon-mag)}
+  .hero-card small{color:var(--muted)}
+
+  section{width:min(1200px,95%); margin:40px auto; padding:18px 0; position:relative; z-index:2}
+  .section-title{display:flex; align-items:center; gap:12px; margin-bottom:16px}
+  .section-title h3{margin:0; font-size:1.35rem; color: #fff}
+  .section-title p{margin:0; color:var(--muted); font-size:0.92rem}
+
+  .members{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+  .member{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px; padding:18px; text-align:center; border:1px solid rgba(255,255,255,0.03);
+    transition:transform .36s ease, box-shadow .36s ease;
+    backdrop-filter: blur(6px);
+  }
+  .member:hover{transform:translateY(-10px); box-shadow:0 20px 60px rgba(120,20,180,0.12)}
+  .member .photo{width:120px;height:120px;border-radius:50%; object-fit:cover; border:3px solid rgba(0,240,255,0.12); margin:0 auto 12px; display:block}
+  .member h4{margin:6px 0 4px; color:var(--neon-cyan)}
+  .member small{color:var(--muted)}
+
+  .music-grid{display:flex; gap:18px; flex-wrap:wrap; align-items:center}
+  .player{
+    flex:1 1 360px; border-radius:14px; padding:16px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03); display:flex; gap:12px; align-items:center;
+  }
+  .album{width:120px;height:120px; border-radius:12px; object-fit:cover}
+  .player .meta{flex:1}
+  .player .meta h4{margin:0;color:var(--neon-mag)}
+  .player .meta p{margin:4px 0 8px;color:var(--muted);font-size:0.95rem}
+
+  footer{
+    text-align:center; color:var(--muted); margin:36px 0 80px; position:relative; z-index:2;
+  }
+
+  @media (max-width:760px){
+    .hero{padding:90px 20px 20px}
+    h2{font-size:1.8rem}
+    .hero-card{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner" role="navigation" aria-label="Principal">
+    <div class="brand">
+      <div class="logo" id="logo-el" aria-hidden>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M3 12h18" stroke="#06131a" stroke-width="2" stroke-linecap="round" />
+          <path d="M6 6h12" stroke="#06131a" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div>
+        <h1>PLAVE <span style="font-size:11px;color:var(--muted);">Fan Portal</span></h1>
+      </div>
+    </div>
+
+    <div class="nav-links" aria-hidden>
+      <a href="#members">Integrantes</a>
+      <a href="#music">Músicas</a>
+      <a href="#gallery">Galeria</a>
+      <a href="#mural">Mensagem dos Fãs</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="hero" role="main">
+    <div class="hero-row">
+      <div class="hero-left">
+        <div class="badge">PLAVE</div>
+        <h2>Feliz natal!! a PLAVE trouxe esse mini portal somente pra você</h2>
+        <p class="lead">Os membros da PLAVE trazem esse sitezinho pra você como presente de natal.</p>
+        <div class="cta-row">
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Próximo show">
+        <div style="text-align:center">
+          <div style="font-size:12px;color:var(--muted)">Próximo show</div>
+          <div class="next-show">KSPO Dome — Seoul</div>
+          <small>15–17 Agosto, 2025</small>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="members">
+    <div class="section-title">
+      <h3>Integrantes</h3>
+      <p>Conheça os membros do PLAVE — personalidade e carisma de cada um.</p>
+    </div>
+    <div class="members" aria-live="polite">
+      <div class="member">
+        <img class="photo" src="Noah.jpg" alt="Noah">
+        <h4>Noah</h4>
+        <small>Vocal • Loirinho do grupo</small>
+      </div>
+      <div class="member">
+        <img class="photo" src="Yejun.jpg" alt="Yejun">
+        <h4>Yejun</h4>
+        <small>Leader • Meio emocionado & Criador do Grupo</small>
+      </div>
+      <div class="member">
+        <img class="photo" src="Bamby.jpg" alt="Bamby">
+        <h4>Bamby</h4>
+        <small>Coreografo • Namoradinho do Eunho & Dono das Hightnotes</small>
+      </div>
+      <div class="member">
+        <img class="photo" src="eunho.jpg" alt="Eunho">
+        <h4>Eunho</h4>
+        <small>Rapper • Flow único • Lobinho & Namoradinho do Bamby</small>
+      </div>
+      <div class="member">
+        <img class="photo" src="Hamin.jpg" alt="Hamin">
+        <h4>Hamin</h4>
+        <small>Performance • Carismatico • Meio medroso & Tem um tanquinho maneiro pra muitos</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="music">
+    <div class="section-title">
+      <h3>Músicas & Álbuns</h3>
+      <p>Curta os hits e álbuns favoritos do PLAVE.</p>
+    </div>
+    <div class="music-grid">
+      <div class="player">
+        <img class="album" src="Asterum.jpg" alt="Álbum Asterum">
+        <div class="meta">
+          <h4>Wait for you</h4>
+          <p>Noah, Yejun, Hamin, Bamby & Eunho</p>
+          <audio id="music1" src="Wait for u.mp3"></audio>
+        </div>
+      </div>
+      <div class="player">
+        <img class="album" src="Calingo.jpg" alt="Álbum Calingo">
+        <div class="meta">
+          <h4>Dash</h4>
+          <p>Noah, Yejun, Hamin, Bamby & Eunho</p>
+          <audio id="music2" src="Dash.mp3"></audio>
+        </div>
+      </div>
+      <div class="player">
+        <img class="album" src="Asterum2.jpg" alt="asterum: the shape of the things to come">
+        <div class="meta">
+          <h4>The 6th summer</h4>
+          <p>Noah, Yejun, Hamin, Bamby & Eunho</p>
+          <audio id="music3" src="the 6th summer.mp3"></audio>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const playBtn = document.getElementById("playToggle");
+let playing = false;
+playBtn.addEventListener("click", () => {
+  const musics = [
+    document.getElementById("music1"),
+    document.getElementById("music2"),
+    document.getElementById("music3")
+  ];
+  if(!playing){
+    musics.forEach(m => m.play());
+    playBtn.textContent="🔇 Pausar música";
+  } else {
+    musics.forEach(m => m.pause());
+    playBtn.textContent="🔊 Ligar música";
+  }
+  playing = !playing;
+});
+</script>
+
+<script>
+const starCount = 100;
+for(let i=0;i<starCount;i++){
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random()*2+1; 
+  star.style.width = star.style.height = size + 'px';
+  star.style.left = Math.random()*100 + 'vw';
+  star.style.top = '100%';
+  star.style.animationDuration = (Math.random()*6 + 4) + 's';
+  star.style.animationDelay = (Math.random()*-10) + 's';
+  document.body.appendChild(star);
+}
+</script>
+
+<script>
+const players = document.querySelectorAll(".player");
+let currentMusic = null;
+
+players.forEach(player => {
+  const album = player.querySelector(".album");
+  const title = player.querySelector("h4");
+  const audio = player.querySelector("audio");
+
+  const toggleMusic = () => {
+    if (currentMusic && currentMusic !== audio) {
+      currentMusic.pause();
+      currentMusic.currentTime = 0;
+    }
+    if (audio.paused) {
+      audio.play();
+      currentMusic = audio;
+    } else {
+      audio.pause();
+      currentMusic = null;
+    }
+  }
+
+  album.addEventListener("click", toggleMusic);
+  title.addEventListener("click", toggleMusic);
+});
+</script>
+
+</body>
+</html>
